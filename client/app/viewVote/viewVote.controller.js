@@ -33,18 +33,22 @@ angular.module('workspaceApp')
                   $scope.xAxis += $scope.data.answers[j];
                  
                   for(var k = 0; k < (spaces - $scope.data.answers[j].length); k++ ) {
-                    console.log(spaces - $scope.data.answers[j].length, k )
+                   
                     $scope.xAxis += "  ";
                   }
                   
                   }
-          console.log($scope.data, $scope.max);
+          
           }
         i++;
       }    
     });
     
-
+  $scope.deleteRecord = function(){
+     $http.delete('/api/pollss/'+ id['param']);
+     alert('Poll has been deleted');
+      $location.path('/');
+  }
     
     
   }]);

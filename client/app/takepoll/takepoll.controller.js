@@ -44,7 +44,7 @@ angular.module('workspaceApp')
      $http.put('/api/pollss/'+ id['param'], {"question": $scope.question, "answers": $scope.answers, "votes": $scope.votes});
         alert('vote successful')
         $location.path('/viewVote').search({param: id['param']})
-     console.log(id);
+     
    }
    
   }]);
