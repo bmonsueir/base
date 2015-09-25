@@ -1,0 +1,25 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Take Poll</h1>
+      <h2>{{question}}</h2>
+    </div>
+
+    <div class = "col-sm-12">
+      
+            <p ng-repeat="answer in answers track by $index">
+                <button class = "btn btn-primary" ng-click="voteChoice($index)" >Vote -></button>
+                {{answer}}
+              </p>
+              
+               <div class="form-group">
+          <button class = "btn btn-danger" ng-click="addAnotherChoice(addAnother)">Add</button>
+          <input type="text" class="form-control" ng-model="addAnother" name="" placeholder="Enter another choice and vote for it">
+          
+        </div>
+      
+    </div>
+  </div>
+</div>

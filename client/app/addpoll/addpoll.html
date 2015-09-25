@@ -1,0 +1,33 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Add Poll</h1>
+    </div>
+    <div class="col-sm-12">
+     
+      <form ng-submit="submit()" ng-controller="AddpollCtrl">
+        <div class="form-group">
+            
+          <label>Question</label>
+          <input type="text" ng-model="question"  class="form-control" name="question" />
+        </div>
+        
+        <div class="form-group" data-ng-repeat="choice in choices">
+          <label for="choice" ng-show="showChoiceLabel(choice)">Choices</label>
+          <input type="text" class="form-control" ng-model="choice.name" name="" placeholder="Enter another choice">
+          <button ng-show="showAddChoice(choice)" ng-click="addNewChoice()">Add another choice</button>
+        </div>
+        
+        <input type="submit" id="submit" value="Submit" class='pull-right' />
+       
+      </form>
+     
+     
+
+        </div>
+
+        
+</div>
+

@@ -1,0 +1,19 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>View Polls</h1>
+    </div>
+
+    <div class = "col-sm-12">
+      
+      <p ng-repeat="x in names">
+        <button class = "btn btn-primary" ng-click="viewQuestion(x._id)">Select -></button>
+        {{ x.question}}
+      </p>
+      
+    </div>
+  </div>
+</div>
+
