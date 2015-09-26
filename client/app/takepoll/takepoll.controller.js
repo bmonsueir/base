@@ -8,7 +8,7 @@ angular.module('workspaceApp')
     $scope.votes = {'what':3};
     var id = $location.search();
     console.log(id);
-   $http.get("/api/pollss")
+   $http.get('/api/pollss')
     .success(function(response) {$scope.names = response;
      var i = 0;
      
@@ -19,7 +19,7 @@ angular.module('workspaceApp')
    }
      
      while($scope.names[i]) {
-        if($scope.names[i]._id.toString() == id.param.toString()){
+        if($scope.names[i]._id.toString() === id.param.toString()){
           $scope.question = $scope.names[i].question;
           $scope.answers = $scope.names[i].answers;
           $scope.votes = $scope.names[i].votes;
@@ -41,8 +41,8 @@ angular.module('workspaceApp')
    }
    
    function updateVotes(){
-     $http.put('/api/pollss/'+ id['param'], {"question": $scope.question, "answers": $scope.answers, "votes": $scope.votes});
-        alert('vote successful')
+     $http.put('/api/pollss/'+ id.param, {'question': $scope.question, 'answers': $scope.answers, 'votes': $scope.votes});
+        alert('vote successful');
         $location.path('/viewVote').search({param: id['param']})
      
    }

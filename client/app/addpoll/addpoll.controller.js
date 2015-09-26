@@ -9,7 +9,7 @@ angular.module('workspaceApp')
       var vote = [];
       $scope.addNewChoice = function() {
         var newItemNo = $scope.choices.length+1;
-        $scope.choices.push({'id':'choice'+newItemNo});
+        $scope.choices.push({'id':'choice'+ newItemNo});
       };
       
       $scope.showAddChoice = function(choice) {
@@ -24,15 +24,15 @@ angular.module('workspaceApp')
           answer.push($scope.choices[i].name);
           vote.push(0);
         }
-        $http.post('/api/pollss', {"question": $scope.question, "answers": answer, "votes": vote});
-        alert('Submission successful')
-        $location.path('/')
+        $http.post('/api/pollss', {'question': $scope.question, 'answers': answer, 'votes': vote});
+        alert('Submission successful');
+        $location.path('/');
         }
       };
       
       $scope.showChoiceLabel = function (choice) {
         return choice.id === $scope.choices[0].id;
-        }
+        };
         
       
     });

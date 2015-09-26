@@ -9,14 +9,14 @@ angular.module('workspaceApp')
     $scope.total = null;
     $scope.width = 600;
     $scope.height = 400;
-    $scope.yAxis = "votes";
-    $scope.xAxis = "";
+    $scope.yAxis = 'votes';
+    $scope.xAxis = '';
     $scope.max = 0;
     $scope.data = {};
     var id = $location.search();
     
     
-   $http.get("/api/pollss")
+   $http.get('/api/pollss')
     .success(function(response) {$scope.names = response;
     var i = 0;
      while($scope.names[i]) {
@@ -28,15 +28,9 @@ angular.module('workspaceApp')
            var columns = $scope.data.votes.length;
            var spaces = 84/ columns;
               for (var j = 0; j < columns; j++) {
-                  if ($scope.data.votes[j] > $scope.max)
-                  $scope.max = $scope.data.votes[j];
-                  $scope.xAxis += $scope.data.answers[j];
-                 
-                  for(var k = 0; k < (spaces - $scope.data.answers[j].length); k++ ) {
-                   
-                    $scope.xAxis += "  ";
-                  }
-                  
+                  if ($scope.data.votes[j] > $scope.max){
+                      $scope.max = $scope.data.votes[j];
+                      }
                   }
           
           }
@@ -45,7 +39,7 @@ angular.module('workspaceApp')
     });
     
   $scope.deleteRecord = function(){
-     $http.delete('/api/pollss/'+ id['param']);
+     $http.delete('/api/pollss/'+ id.param);
      alert('Poll has been deleted');
       $location.path('/');
   }
