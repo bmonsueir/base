@@ -1,12 +1,21 @@
 'use strict';
 
 angular.module('workspaceApp')
-    .controller('AddpollCtrl', function($scope, $http, $location) {
+    .controller('AddpollCtrl', function($scope, $http, $location, Auth) {
  
       $scope.question = '';
       $scope.choices = [{id: 'choice1'},{id: 'choice2'}];
       var answer =[];
       var vote = [];
+      var voters = [];
+      $scope.names = [];
+      $scope.ident = '';
+      
+      
+      $scope.isLoggedIn = Auth.isLoggedIn;
+      $scope.isAdmin = Auth.isAdmin;
+      $scope.getCurrentUser = Auth.getCurrentUser
+      
       $scope.addNewChoice = function() {
         var newItemNo = $scope.choices.length+1;
         $scope.choices.push({'id':'choice'+ newItemNo});
@@ -24,9 +33,20 @@ angular.module('workspaceApp')
           answer.push($scope.choices[i].name);
           vote.push(0);
         }
-        $http.post('/api/pollss', {'question': $scope.question, 'answers': answer, 'votes': vote});
+        $http.post('/api/pollss', {'question': $scope.question, 'answers': answer, 'votes': vote, 'voters': voters, 'user': $scope.getCurrentUser().name});
         alert('Submission successful');
-        $location.path('/');
+        
+      
+   
+   $http.get('/api/pollss')
+    .success(function(response) {$scope.names = response;
+    $scope.ident = $scope.names[$scope.names.length-1]._id;
+    console.log($scope.ident);
+     $location.path('/takepoll').search({param: $scope.ident});
+    
+    });
+        
+          
         }
       };
       
